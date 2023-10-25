@@ -1,6 +1,6 @@
 resource "aws_security_group" "Jenkins-sg" {
   name        = "Jenkins-Security Group"
-  description = "Open 22,443,80,8080,9000"
+  description = "Open 22,443,80,8080,9000,3000"
 
   # Define a single ingress rule to allow traffic on all specified ports
   ingress = [
@@ -31,9 +31,9 @@ resource "aws_security_group" "Jenkins-sg" {
 
 
 resource "aws_instance" "web" {
-  ami                    = "ami-0f5ee92e2d63afc18"
+  ami                    = "ami-0287a05f0ef0e9d9a"
   instance_type          = "t2.large"
-  key_name               = "Mumbai"
+  key_name               = "Devops"
   vpc_security_group_ids = [aws_security_group.Jenkins-sg.id]
   user_data              = templatefile("./install_jenkins.sh", {})
 
